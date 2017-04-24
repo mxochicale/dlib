@@ -3,13 +3,15 @@ Installation gazr which has a dlib dependency
 
 
 
+
 # On Ubuntu 14.04 x64
 
 Afer "sudo cmake --build . --target install"
 
 ```
+cd
 git clone https://github.com/severin-lemaignan/gazr && cd gazr && mkdir build && cd build
-cmake ..
+cmake -DCMAKE_BUILD_TYPE=Release ..
 make
 ```
 
@@ -17,7 +19,7 @@ make
 to test the library.
 
 ```
-./gazr_show_head_pose ../share/shape_predictor_68_face_landmarks.dat
+./gazr_show_head_pose --model ../share/shape_predictor_68_face_landmarks.dat  
 ```
 
 
@@ -203,6 +205,12 @@ WARNING: you should run this program as super-user.
 
 
 I appreciate your time and help.
+
+
+
+
+NEXT 
+https://wiki.archlinux.org/index.php/webcam_setup#Webcam_resolution
 
 
 
