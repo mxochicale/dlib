@@ -25,7 +25,7 @@ mkdir -p ~/dlib
 cd ~/dlib
 wget https://github.com/davisking/dlib/archive/v19.4.tar.gz
 tar xf v19.4.tar.gz
-rm v19.4.tar.gz rm v19.4.tar.gz
+rm v19.4.tar.gz
 cd dlib-19.4/
 ```
 
