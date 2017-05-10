@@ -209,7 +209,7 @@ I appreciate your time and help.
 
 
 
-NEXT 
+NEXT
 https://wiki.archlinux.org/index.php/webcam_setup#Webcam_resolution
 
 
@@ -264,4 +264,48 @@ sudo pip install matplotlib
 
 ```
 $ ./gazr_estimate_head_direction --model=../share/shape_predictor_68_face_landmarks.dat | python -u ../tools/live_plot.py
+```
+
+
+
+
+
+
+## Testing the camera configuration parameters
+```
+ ./gazr_show_head_pose --model ../share/shape_predictor_68_face_landmarks.dat  
+Setting the optical center to (480, 360)
+Processing time for this frame: 188.887ms
+```
+/show_head_pose.cpp
+```
+    // Configure the video capture
+    // ===========================
+
+        video_in.set(CV_CAP_PROP_FRAME_WIDTH, 640);
+        video_in.set(CV_CAP_PROP_FRAME_HEIGHT, 480);
+```
+
+/estimate_head_direction.cpp
+```
+    // adjust for your webcam!
+    estimator.focalLength = 500;
+
+    // adjust for your webcam!
+    video_in.set(CV_CAP_PROP_FRAME_WIDTH, 640);
+    video_in.set(CV_CAP_PROP_FRAME_HEIGHT, 480);
+    estimator.focalLength = 500;
+    estimator.opticalCenterX = 80;
+    estimator.opticalCenterY = 60;
+```
+
+/logitech-c920_640x360.ini
+```
+width
+640
+#960
+
+height
+360#720
+
 ```
