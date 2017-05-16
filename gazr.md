@@ -1,12 +1,15 @@
-Installation gazr which has a dlib dependency
+Installation of gazr
 ----
 
+(gazr)[https://github.com/severin-lemaignan/gazr/] is a library and a set of
+tools for real-time gaze estimation from a monocular camera (typically, a webcam).
 
+
+Requirements
+This application requires dlib >= 18.18.
 
 
 # On Ubuntu 14.04 x64
-
-Afer "sudo cmake --build . --target install"
 
 ```
 cd
@@ -144,7 +147,7 @@ $ cmake ..
 
 
 
-# ISSUES
+### ISSUES
 
 
 ./gazr_show_head_pose ... is not working properly
@@ -215,7 +218,7 @@ https://wiki.archlinux.org/index.php/webcam_setup#Webcam_resolution
 
 
 
-# Dependencies issues with dlibConfig.cmake when building gazr using dlib-19.4 in Release mode
+#### Dependencies issues with dlibConfig.cmake when building gazr using dlib-19.4 in Release mode
 https://github.com/severin-lemaignan/gazr/issues/9
 
 
@@ -255,7 +258,7 @@ Do you have any suggestions?
 
 
 
-## live_plot.py
+### live_plot.py
 
 ```
 sudo pip install numpy
@@ -307,5 +310,135 @@ width
 
 height
 360#720
+
+```
+
+
+
+
+# On Ubuntu 16.04 x64
+
+
+On Ubuntu 16.04 and above, sudo apt-get install libdlib-dev
+You also need OpenCV. On Ubuntu, sudo apt-get install libopencv-dev.
+
+```
+cd && git clone https://github.com/severin-lemaignan/gazr && cd gazr && mkdir build && cd build
+cmake -DCMAKE_BUILD_TYPE=Release ..
+```
+
+
+```
+$ cmake -DCMAKE_BUILD_TYPE=Release ..
+-- The C compiler identification is GNU 5.4.0
+-- The CXX compiler identification is GNU 5.4.0
+-- Check for working C compiler: /usr/bin/cc
+-- Check for working C compiler: /usr/bin/cc -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Check for working CXX compiler: /usr/bin/c++
+-- Check for working CXX compiler: /usr/bin/c++ -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- C++11 activated.
+-- Found OpenCV: /usr/local (found version "3.2.0") found components:  core imgproc calib3d highgui
+-- OpenCV version: 3.2.0
+-- Found OpenCV: /usr/local (found version "3.2.0") found components:  core imgproc calib3d highgui imgcodecs videoio
+-- Boost version: 1.58.0
+-- Found the following Boost libraries:
+--   program_options
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/map479/gazr/build
+```
+
+```
+$ make
+Scanning dependencies of target gazr
+[ 12%] Building CXX object CMakeFiles/gazr.dir/src/head_pose_estimation.cpp.o
+[ 25%] Linking CXX shared library libgazr.so
+[ 25%] Built target gazr
+Scanning dependencies of target gazr_benchmark_head_pose_single_frame
+[ 37%] Building CXX object CMakeFiles/gazr_benchmark_head_pose_single_frame.dir/tools/benchmark_head_pose_estimation_single_frame.cpp.o
+[ 50%] Linking CXX executable gazr_benchmark_head_pose_single_frame
+[ 50%] Built target gazr_benchmark_head_pose_single_frame
+Scanning dependencies of target gazr_show_head_pose
+[ 62%] Building CXX object CMakeFiles/gazr_show_head_pose.dir/tools/show_head_pose.cpp.o
+[ 75%] Linking CXX executable gazr_show_head_pose
+[ 75%] Built target gazr_show_head_pose
+Scanning dependencies of target gazr_estimate_head_direction
+[ 87%] Building CXX object CMakeFiles/gazr_estimate_head_direction.dir/tools/estimate_head_direction.cpp.o
+[100%] Linking CXX executable gazr_estimate_head_direction
+[100%] Built target gazr_estimate_head_direction
+```
+
+
+testing gazr
+
+```
+./gazr_show_head_pose --model ../share/shape_predictor_68_face_landmarks.dat  
+```
+
+error using usb2.0 plug
+
+```
+$ ./gazr_show_head_pose --model ../share/shape_predictor_68_face_landmarks.dat  
+select timeout
+select timeout
+OpenCV Error: Assertion failed (total() == 0 || data != NULL) in Mat, file /home/map479/opencv-3.2.0/modules/core/include/opencv2/core/mat.inl.hpp, line 431
+terminate called after throwing an instance of 'cv::Exception'
+  what():  /home/map479/opencv-3.2.0/modules/core/include/opencv2/core/mat.inl.hpp:431: error: (-215) total() == 0 || data != NULL in function Mat
+
+Aborted
+```
+
+
+error using usb3.0 plug
+
+```
+$ ./gazr_show_head_pose --model ../share/shape_predictor_68_face_landmarks.dat  
+Setting the optical center to (320, 240)
+```
+
+
+
+
+
+
+
+### live_plot.py
+
+```
+sudo pip install numpy
+sudo pip install matplotlib
+```
+
+```
+$ ./gazr_estimate_head_direction --model=../share/shape_predictor_68_face_landmarks.dat | python -u ../tools/live_plot.py
+/usr/local/lib/python2.7/site-packages/matplotlib/backend_bases.py:2453: MatplotlibDeprecationWarning: Using default event loop until function specific to this GUI is implemented
+  warnings.warn(str, mplDeprecation)
+invalid command name "140560397156176idle_draw"
+    while executing
+"140560397156176idle_draw"
+    ("after" script)
+Traceback (most recent call last):
+  File "../tools/live_plot.py", line 41, in <module>
+    plt.pause(0.05)
+  File "/usr/local/lib/python2.7/site-packages/matplotlib/pyplot.py", line 300, in pause
+    canvas.start_event_loop(interval)
+  File "/usr/local/lib/python2.7/site-packages/matplotlib/backends/backend_tkagg.py", line 514, in start_event_loop
+    FigureCanvasBase.start_event_loop_default(self,timeout)
+  File "/usr/local/lib/python2.7/site-packages/matplotlib/backend_bases.py", line 2461, in start_event_loop_default
+    self.flush_events()
+  File "/usr/local/lib/python2.7/site-packages/matplotlib/backends/backend_tkagg.py", line 511, in flush_events
+    self._master.update()
+  File "/usr/local/lib/python2.7/lib-tk/Tkinter.py", line 1024, in update
+    self.tk.call('update')
+_tkinter.TclError: can't invoke "update" command: application has been destroyed
+
 
 ```
