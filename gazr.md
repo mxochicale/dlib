@@ -319,8 +319,7 @@ height
 # On Ubuntu 16.04 x64
 
 
-On Ubuntu 16.04 and above, sudo apt-get install libdlib-dev
-You also need OpenCV. On Ubuntu, sudo apt-get install libopencv-dev.
+gazr has been built with dlib https://github.com/davisking/dlib/archive/v19.4.tar.gz
 
 ```
 cd && git clone https://github.com/severin-lemaignan/gazr && cd gazr && mkdir build && cd build
@@ -383,7 +382,7 @@ testing gazr
 ./gazr_show_head_pose --model ../share/shape_predictor_68_face_landmarks.dat  
 ```
 
-error using usb2.0 plug
+I got an error for using usb2.0 plug
 
 ```
 $ ./gazr_show_head_pose --model ../share/shape_predictor_68_face_landmarks.dat  
@@ -396,8 +395,7 @@ terminate called after throwing an instance of 'cv::Exception'
 Aborted
 ```
 
-
-error using usb3.0 plug
+Then I use a usb3.0 plug and I only got a view the webcam's window for a very short time.
 
 ```
 $ ./gazr_show_head_pose --model ../share/shape_predictor_68_face_landmarks.dat  
