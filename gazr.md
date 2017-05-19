@@ -410,11 +410,8 @@ Setting the optical center to (320, 240)
 
 ### live_plot.py
 
-```
-sudo pip install numpy
-sudo pip install matplotlib
-```
 
+errors for python lib dependencies
 ```
 $ ./gazr_estimate_head_direction --model=../share/shape_predictor_68_face_landmarks.dat | python -u ../tools/live_plot.py
 /usr/local/lib/python2.7/site-packages/matplotlib/backend_bases.py:2453: MatplotlibDeprecationWarning: Using default event loop until function specific to this GUI is implemented
@@ -439,4 +436,17 @@ Traceback (most recent call last):
 _tkinter.TclError: can't invoke "update" command: application has been destroyed
 
 
+```
+
+Then
+
+```
+sudo pip install numpy
+sudo pip install matplotlib
+```
+
+and ./gazr_estimate_head_direction works well
+
+```
+./gazr_estimate_head_direction --model=../share/shape_predictor_68_face_landmarks.dat | python -u ../tools/live_plot.py
 ```
