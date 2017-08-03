@@ -43,7 +43,6 @@ sudo pip install matplotlib
 ```
 
 
-
 gazr has been built with dlib https://github.com/davisking/dlib/archive/v19.4.tar.gz
 
 ```
@@ -84,23 +83,6 @@ testing gazr
 
 
 
-
-### with ROS      
-```
-find_package(catkin REQUIRED COMPONENTS
-        roscpp
-        tf
-        std_msgs
-        visualization_msgs
-        sensor_msgs
-        cv_bridge
-        image_transport
-        image_geometry
-        )
-
-    include_directories(${catkin_INCLUDE_DIRS})
-
-```
 
 
 

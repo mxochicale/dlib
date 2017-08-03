@@ -51,21 +51,21 @@ sudo apt-get install libboost-all-dev
 cd
 git clone https://github.com/davisking/dlib
 cd dlib
-mkdir build && cd build && cmake  ..
+mkdir build && cd build && cmake  -D WITH_JPEG=OFF  ..
 sudo cmake --build . --target install
 ```
 
-
-
-
-For more about [--target install](https://github.com/davisking/dlib/issues/395#issuecomment-271501699)
+[More about --target install](https://github.com/davisking/dlib/issues/395#issuecomment-271501699)
 
 
 #### testing
 
+Comment the macros at dlib/examples/CMakeLists.txt LINE 150 such as #add_gui_example(3d_point_cloud_ex)
+
+
 ```
 cd ../examples/
-mkdir build && cd build && cmake WITH_JPEG=OFF ..
+mkdir build && cd build && cmake -D WITH_JPEG=OFF  ..
 cmake --build .  --config Release
 ```
 
@@ -87,7 +87,7 @@ bzip2 -d shape_predictor_68_face_landmarks.dat.bz2
 $ ./webcam_face_pose_ex
 ```
 
-
+However, the warning is still persists
 
 
 

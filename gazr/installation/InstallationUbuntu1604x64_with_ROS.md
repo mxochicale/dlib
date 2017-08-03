@@ -1,7 +1,7 @@
 
 # ROS dependencies
 
-install the following ROS dependencies 
+install the following ROS dependencies
 ```
         roscpp
         tf
@@ -15,3 +15,8 @@ install the following ROS dependencies
     include_directories(${catkin_INCLUDE_DIRS})
 
 ```
+
+
+# Issue
+
+* [ ROS Kinetic dependencies are not working with gazr #12 ](https://github.com/severin-lemaignan/gazr/issues/12)
