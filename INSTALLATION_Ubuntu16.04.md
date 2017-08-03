@@ -61,6 +61,7 @@ sudo cmake --build . --target install
 #### testing
 
 Comment the macros at dlib/examples/CMakeLists.txt LINE 150 such as #add_gui_example(3d_point_cloud_ex)
+to avoid the compilation of other examples
 
 
 ```
@@ -69,13 +70,6 @@ mkdir build && cd build && cmake -D WITH_JPEG=OFF  ..
 cmake --build .  --config Release
 ```
 
-cmake WITH_JPEG=OFF
-to void this warnings
-```
-$ ./webcam_face_pose_ex
-Corrupt JPEG data: 4 extraneous bytes before marker 0xd7
-```
-
 
 download the face landmarks
 ```
@@ -87,88 +81,12 @@ bzip2 -d shape_predictor_68_face_landmarks.dat.bz2
 $ ./webcam_face_pose_ex
 ```
 
-However, the warning is still persists
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# Ubuntu 16.04 x64 (First installation)
-
-[Main Source](http://www.pyimagesearch.com/2017/03/27/how-to-install-dlib/)
-
-Installing CMake, Boost, Boost.Python, and X11
-
-```
-sudo apt-get install build-essential cmake
-sudo apt-get install libgtk-3-dev
-sudo apt-get install libboost-all-dev
-```
-
-
-##### Testing dlib installation
-
-
-```
-mkdir -p ~/dlib
-cd ~/dlib
-wget https://github.com/davisking/dlib/archive/v19.4.tar.gz
-tar xf v19.4.tar.gz
-rm v19.4.tar.gz
-cd dlib-19.4/
-```
-
-
-```
-cd examples
-mkdir build && cd build
-cmake ..
-cmake --build . --config Release
-```
-
-download the face landmarks
-```
-wget http://dlib.net/files/shape_predictor_68_face_landmarks.dat.bz2
-bzip2 -d shape_predictor_68_face_landmarks.dat.bz2
-```
-
-```
-./webcam_face_pose_ex
-```
-
-
-[2](https://askubuntu.com/questions/824834/how-to-install-dlib-for-python3-in-ubuntu-14-04)
-[3](http://dlib.net/compile.html)
-[4](https://github.com/davisking/dlib)
-
-
-
-
-:) Wed 10 May 23:33:29 BST 2017 @bhamuk
+# WARNING
+However,
+after building dlib with "cmake  -D WITH_JPEG=OFF  .."
+ the warning of "Corrupt JPEG data:" is still persists
+ ```
+ $ ./webcam_face_pose_ex
+ Corrupt JPEG data: 4 extraneous bytes before marker 0xd7
+ ```
